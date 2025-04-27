@@ -1,0 +1,27 @@
+# Flume agent configuration
+
+agent.sources = src
+agent.sinks = sink
+agent.channels = chn
+
+# Source - monitoring local file (output of fetch_data.py)
+agent.sources.src.type = spooldir
+agent.sources.src.spoolDir = C:\Users\PMLS\Desktop\Python\SemesterProjects\BDA_Project\yfinance_extract\stock_data.csv
+agent.sources.src.fileSuffix = .csv
+
+# Channel
+agent.channels.chn.type = memory
+agent.channels.chn.capacity = 1000
+agent.channels.chn.transactionCapacity = 100
+
+# Sink - HDFS
+agent.sinks.sink.type = hdfs
+agent.sinks.sink.hdfs.path = hdfs://localhost:9000/stock_data/raw/
+agent.sinks.sink.hdfs.fileType = DataStream
+agent.sinks.sink.hdfs.writeFormat = Text
+agent.sinks.sink.hdfs.rollSize = 0
+agent.sinks.sink.hdfs.rollCount = 10000
+
+# Bind them
+agent.sources.src.channels = chn
+agent.sinks.sink.channel = chn
