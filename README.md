@@ -25,7 +25,7 @@ An end-to-end big data engineering project that extracts stock data from Yahoo F
 
 ## 📂 Project Structure
 
-![Pipeline Workflow](\projecct.png)
+![Pipeline Workflow](projecct.png)
 
 
 ## ⚙️ Requirements
